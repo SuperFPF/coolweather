@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R.integer;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -46,7 +45,19 @@ public class CoolWeatherDB {
         }
         return coolWeatherDB;
     }
-
+    
+    
+    /**
+     * 将Province实例存储到数据库
+     * */
+    public void saveProvince(Province province) {
+        if(province != null) {
+            ContentValues values = new ContentValues();
+            values.put("province_name", province.getProvinceName());
+            values.put("province_code", province.getProvinceCode());
+            db.insert("Province", null, values);
+        }
+    }
     /**
      * 从数据库读取全国所有的省份信息
      * */
